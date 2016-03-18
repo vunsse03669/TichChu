@@ -1,6 +1,7 @@
 package GameState;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.Stack;
 
 /**
@@ -32,5 +33,12 @@ public class GameStateManager {
 
     public void keyTyped(int k){
         states.peek().keyTyped(k);
+    }
+    public void mouseClicked(int k){
+        states.peek().mouseClicked(k);
+    }
+    public void mouseReleased(int k) {
+
+            states.peek().mouseReleased(k);
     }
 }

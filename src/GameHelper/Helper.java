@@ -18,6 +18,9 @@ public class Helper {
     public static final int ENEMY6_SPEED = 5;
     public static final int ENEMY7_SPEED = 3;
     public static final String PLAYER_FLY = "Resources/Image/player.png";
+    public static final String COIN = "Resources/Image/coin.png";
+    public static final String GAMEOVER = "Resources/Image/GameOver.png";
+    public static final String ROCKET = "Resources/Image/rocket.png";
     public static final String ENEMY1 = "Resources/Image/Enemy1.png";
     public static final String ENEMY2 = "Resources/Image/Enemy2.png";
     public static final String ENEMY3 = "Resources/Image/Enemy3.png";
@@ -37,6 +40,7 @@ public class Helper {
     public static final String BULLET_LV1 = "Resources/Bullet/bullet_lv1.png";
     public static final String BULLET_LV2 = "Resources/Bullet/bullet_lv2.png";
     public static final String BULLET_LV3 = "Resources/Bullet/bullet_lv3.png";
+    public static final String BULLET_LV4 = "Resources/Bullet/bullet_lv4.png";
     public static final String GIFT_BULLET = "Resources/Image/gift.png";
     public static final String HEART = "Resources/Image/heart.png";
     public static final String ICE = "Resources/Image/ice.jpg";
@@ -49,4 +53,18 @@ public class Helper {
     public static final String BOSS1_SOUND = "Resources/Music/level1boss.wav";
     public static final String PLAYER_SHOT = "Resources/Music/player_shot.wav";
     public static final String BANG = "Resources/Music/boom.wav";
+
+    public static final String ENEMY1_SLOW = "Resources/Image/Enemy1_Slow.png";
+    public static final String ENEMY2_SLOW = "Resources/Image/Enemy2_Slow.png";
+    public static final String ENEMY3_SLOW = "Resources/Image/Enemy3_Slow.png";
+    public static final String ENEMY4_SLOW = "Resources/Image/Enemy5_Slow.png";
+    public static final String ENEMY5_SLOW = "Resources/Image/Enemy6_Slow.png";
+    public static final String ENEMY6_SLOW = "Resources/Image/Enemy7_Slow.png";
+    public static final String ENEMY7_SLOW = "Resources/Image/Enemy8_Slow.png";
+    public static final String ENEMY8_SLOW = "Resources/Image/Enemy9_Slow.png";
+    public static final String ENEMY9_SLOW = "Resources/Image/Enemy10_Slow.png";
+    public static final String RUOI_SLOW = "Resources/Image/Ruoi_Slow.png";
+    public static final String DRAGON_SLOW = "Resources/Image/DragonFly_Slow.png";
+
+
 }

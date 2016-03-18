@@ -5,6 +5,7 @@ import GameHelper.Helper;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -50,6 +51,16 @@ public class About extends GameState {
 
     @Override
     public void keyTyped(int k) {
+
+    }
+
+    @Override
+    public void mouseClicked(int k) {
+
+    }
+
+    @Override
+    public void mouseReleased(int k) {
 
     }
 }

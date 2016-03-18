@@ -1,6 +1,7 @@
 package GameState;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by Mr Hung on 3/14/2016.
@@ -19,6 +20,8 @@ public abstract class GameState {
     public abstract void keyPressed(int k);
     public abstract void keyReleased(int k);
     public abstract void keyTyped(int k);
+    public abstract void mouseClicked(int k);
+    public abstract void mouseReleased(int k) ;
 
 
 }

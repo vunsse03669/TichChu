@@ -64,18 +64,30 @@ public class PlayerFly extends PlayerAbstract {
                 sound.get("shot").play();
             }
         }
+        //ban ten lua
+        if(k == KeyEvent.VK_W){
+            if(count <= 5){
+                if(this.rocket > 0){
+                    this.fireRocket();
+                    this.rocket--;
+                    sound.get("shot").play();
+                }
+            }
+        }
+
     }
 
     public void draw(Graphics g){
         animation.draw(g,(int)positionX ,(int)positionY );
-        for(int i = 0; i < this.hp; i++){
+        for(int i = 0; i < this.rocket; i++){
             g.drawImage(this.heart,20 + i*32,50,null);
         }
         for(BulletAbstract bullet : BulletManager.getInstance().getVectorBulelt()){
             bullet.draw(g);
         }
         g.setFont(new Font("Arial Black",Font.PLAIN,20));
-        g.drawString("Score: "+this.score, Helper.WIDTH - 200, 100);
+        g.drawString("Score1: "+this.score, Helper.WIDTH - 200, 100);
+        g.drawString("Coin1: "+this.coin, Helper.WIDTH - 200, 130);
         g.setColor(Color.green);
         g.fillRect((int)this.positionX-5,(int)this.positionY-20,hp*50,5);
         g.drawRect((int)this.positionX-5,(int)this.positionY-20,hp*50,5);
@@ -90,25 +102,20 @@ public class PlayerFly extends PlayerAbstract {
     @Override
     public void keyTyped(int k) {}
 
-    @Override
-    public void shot() {
-        switch (levelBullet){
-            case 1:
-                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv1(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
-                break;
-            case 2:
-                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv2(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
-                break;
-            case 3:
-                //BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv3(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
-                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv5(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
-                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv1(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
-                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv4(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
 
-                break;
-            default:
-                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv1(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
-                break;
-        }
+
+    @Override
+    public void mouseClicked(int k) {
+
+    }
+
+    @Override
+    public void mouseReleased(int k) {
+
+    }
+
+    @Override
+    public void fireRocket() {
+        vectorBullet.add(new Rocket(this.positionX+100,this.positionY+100));
     }
 }

@@ -38,6 +38,10 @@ public class GiftAbstract extends GameObject {
                 (int)PlayerManager.getInstance().getPlayerFly().getPositionY(),
                 (int)PlayerManager.getInstance().getPlayerFly().getWidth(),
                 (int)PlayerManager.getInstance().getPlayerFly().getHeight());
-        return rectGift.intersects(rectPlayer);
+        Rectangle rectPlayer2 = new Rectangle((int) PlayerManager.getInstance().getPlayerMouse().getPositionX(),
+                (int)PlayerManager.getInstance().getPlayerMouse().getPositionY(),
+                (int)PlayerManager.getInstance().getPlayerMouse().getWidth(),
+                (int)PlayerManager.getInstance().getPlayerMouse().getHeight());
+        return rectGift.intersects(rectPlayer) || rectGift.intersects(rectPlayer2);
     }
 }

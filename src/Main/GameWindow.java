@@ -4,15 +4,12 @@ import GameHelper.Helper;
 import GameState.GameStateManager;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 
 /**
  * Created by Mr Hung on 3/13/2016.
  */
-public class GameWindow extends Frame implements Runnable, KeyListener {
+public class GameWindow extends Frame implements Runnable, KeyListener,MouseListener {
     private boolean isRunning = true;
     private Image backImage;
     private Graphics backGraphics;
@@ -42,6 +39,7 @@ public class GameWindow extends Frame implements Runnable, KeyListener {
 
         this.addKeyListener(this);
         this.setFocusable(true);
+        this.addMouseListener(this);
     }
 
     public void init(){
@@ -103,4 +101,29 @@ public class GameWindow extends Frame implements Runnable, KeyListener {
     public void keyReleased(KeyEvent e) {
         gsm.keyRelased(e.getKeyCode());
 }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        gsm.mouseClicked(e.getModifiers());
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        gsm.mouseReleased(e.getModifiers());
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
 }

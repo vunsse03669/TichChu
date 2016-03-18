@@ -54,4 +54,14 @@ public class Help extends GameState {
     public void keyTyped(int k) {
 
     }
+
+    @Override
+    public void mouseClicked(int k) {
+
+    }
+
+    @Override
+    public void mouseReleased(int k) {
+
+    }
 }

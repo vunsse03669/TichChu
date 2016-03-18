@@ -13,7 +13,12 @@ public class BulletPlayerLv2 extends BulletAbstract {
         super(positionX, positionY);
         try{
             damage = 2;
-            this.sprite = ImageIO.read(new File(Helper.BULLET_LV2));
+            if(BulletAbstract.isSlow){
+                this.sprite = ImageIO.read(new File(Helper.BULLET_LV4));
+            }
+            else{
+                this.sprite = ImageIO.read(new File(Helper.BULLET_LV2));
+            }
         }catch(Exception e){}
     }
 

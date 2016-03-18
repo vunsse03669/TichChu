@@ -4,13 +4,11 @@ import Entities.Animation;
 import Entities.Enemy.EnemyAbstract;
 import Entities.Enemy.EnemyManager;
 import Entities.GameObject;
-import Entities.Gift.GiftAbstract;
-import Entities.Gift.GiftManager;
-import Entities.Gift.Heart;
-import Entities.Gift.Ice;
+import Entities.Gift.*;
+import Entities.Observer.Observer;
+import Entities.Observer.Subject;
 import Entities.Sound.AudioPlayer;
-import Entities.Weapon.BulletAbstract;
-import Entities.Weapon.BulletManager;
+import Entities.Weapon.*;
 import GameHelper.Helper;
 
 import javax.imageio.ImageIO;
@@ -23,7 +21,7 @@ import java.util.Vector;
 /**
  * Created by Mr Hung on 3/13/2016.
  */
-public abstract class PlayerAbstract extends GameObject {
+public abstract class PlayerAbstract extends GameObject implements Subject{
     protected HashMap<String,AudioPlayer> sound;
     protected int speed;
     protected int hp;
@@ -31,9 +29,14 @@ public abstract class PlayerAbstract extends GameObject {
     protected Vector<BulletAbstract> vectorBullet;
     protected int score;
     protected int levelBullet;
+    protected int coin;
+    protected int rocket;
+    Vector<Observer> vectorObserver = new Vector<>();
 
 
     public PlayerAbstract(double positionX, double positionY){
+        coin = 0;
+        rocket = 0;
         this.score = 0;
         this.positionX = positionX;
         this.positionY = positionY;
@@ -50,7 +53,11 @@ public abstract class PlayerAbstract extends GameObject {
     }
     @Override
     public void update() {
-        System.out.println(BulletAbstract.isSlow);
+        //fireRocket();
+        if(coin >= 20){
+            rocket++;
+            coin = 0;
+        }
         this.move();
         for(BulletAbstract bullet : BulletManager.getInstance().getVectorBulelt()){
             bullet.update();
@@ -68,12 +75,31 @@ public abstract class PlayerAbstract extends GameObject {
                 else if( gift instanceof Ice){
                     GiftManager.getInstance().getVectorGift().remove(gift);
                     BulletAbstract.isSlow = true;
+
+                }else if( gift instanceof Coin){
+                    int coint = 0;
+                    if(this instanceof PlayerFly){
+                        coint=PlayerManager.getInstance().getPlayerFly().getCoin();
+                        PlayerManager.getInstance().getPlayerFly().setCoin(coint+1);
+                    }else if(this instanceof PlayerMouse){
+                        coint=PlayerManager.getInstance().getPlayerMouse().getCoin();
+                        PlayerManager.getInstance().getPlayerMouse().setCoin(coint+1);
+                    }
+
                 }
-                else{
-                    this.levelBullet++;
-                    sound.get("anqua").play();
-                    GiftManager.getInstance().getVectorGift().remove(gift);
+                else if( gift instanceof GiftBullet){
+                    int lv = 0;
+                    if(this instanceof PlayerFly){
+                        lv =  PlayerManager.getInstance().getPlayerFly().getLevelBullet();
+                        PlayerManager.getInstance().getPlayerFly().setLevelBullet(lv+1);
+                    }else if(this instanceof PlayerMouse){
+                        lv =  PlayerManager.getInstance().getPlayerMouse().getLevelBullet();
+                        PlayerManager.getInstance().getPlayerMouse().setLevelBullet(lv+1);
+                    }
+
                 }
+                sound.get("anqua").play();
+                GiftManager.getInstance().getVectorGift().remove(gift);
                 return;
             }
         }
@@ -100,7 +126,33 @@ public abstract class PlayerAbstract extends GameObject {
     public abstract void keyPressed(int k);
     public abstract void keyRelased(int k);
     public abstract void keyTyped(int k);
-    public abstract void shot();
+
+    public void shot() {
+
+        switch (levelBullet){
+            case 1:
+                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv1(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
+                break;
+            case 2:
+                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv2(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
+                break;
+            case 3:
+                //BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv3(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
+                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv5(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
+                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv1(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
+                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv4(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
+
+                break;
+            default:
+                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv1(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
+                break;
+        }
+    }
+    public abstract void mouseClicked(int k);
+    public abstract void mouseReleased(int k);
+
+    public abstract void fireRocket();
+
 
     public int getSpeed() {
         return speed;
@@ -132,5 +184,38 @@ public abstract class PlayerAbstract extends GameObject {
 
     public void setLevelBullet(int levelBullet) {
         this.levelBullet = levelBullet;
+    }
+
+    public int getCoin() {
+        return coin;
+    }
+
+    public int getRocket() {
+        return rocket;
+    }
+
+    public void setCoin(int coin) {
+        this.coin = coin;
+    }
+
+    public void setRocket(int rocket) {
+        this.rocket = rocket;
+    }
+
+    @Override
+    public void addObserver(Observer ob) {
+        vectorObserver.add(ob);
+    }
+
+    @Override
+    public void removeObserver(Observer ob) {
+        vectorObserver.remove(ob);
+    }
+
+    @Override
+    public void notifiObserver() {
+        for(Observer ob : vectorObserver){
+            ob.update("1");
+        }
     }
 }

@@ -6,11 +6,13 @@ package Entities.Player;
 public class PlayerManager {
     private PlayerFly playerFly;
     private Player player;
+    private PlayerMouse playerMouse;
     private static PlayerManager sharePointer;
 
     private PlayerManager(){
         playerFly = new PlayerFly(100,200);
         player = new Player(100,200);
+        playerMouse = new PlayerMouse(100,300);
     }
 
     public static PlayerManager getInstance(){
@@ -26,5 +28,9 @@ public class PlayerManager {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public PlayerMouse getPlayerMouse() {
+        return playerMouse;
     }
 }

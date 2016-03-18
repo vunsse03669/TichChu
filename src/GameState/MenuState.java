@@ -6,6 +6,7 @@ import GameHelper.Helper;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageFilter;
 import java.io.File;
@@ -61,7 +62,6 @@ public class MenuState extends GameState {
 
     @Override
     public void keyPressed(int k) {
-
         if(k == KeyEvent.VK_DOWN){
             currentSelection++;
             sound.get("select").play();
@@ -77,6 +77,7 @@ public class MenuState extends GameState {
         }
         if(k == KeyEvent.VK_ENTER){
             if(currentSelection == 0){
+                //gsm.states.pop();
                 gsm.states.push(new Level2State(gsm));
                 sound.get("sound_background").stop();
             }else if(currentSelection == 1){
@@ -96,6 +97,16 @@ public class MenuState extends GameState {
 
     @Override
     public void keyTyped(int k) {
+
+    }
+
+    @Override
+    public void mouseClicked(int k) {
+
+    }
+
+    @Override
+    public void mouseReleased(int k) {
 
     }
 }

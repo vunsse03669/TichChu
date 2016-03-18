@@ -1,19 +1,25 @@
 package Entities.Enemy;
 
 import Entities.Animation;
+import Entities.Weapon.BulletAbstract;
 import GameHelper.Helper;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.File;
 
 /**
  * Created by Mr Hung on 3/17/2016.
  */
 public class Enemy1 extends EnemyAbstract {
-    Animation anim;
+
 
     public Enemy1(double positionX, double positionY) {
         super(positionX, positionY);
-        anim = new Animation(Helper.ENEMY1, 65, 51, 100);
+
+        try{
+                anim = new Animation(Helper.ENEMY1, 65, 51, 100);
+        }catch(Exception e){}
         imageWidth = 65;
         imageHeight = 51;
         hp = 2;

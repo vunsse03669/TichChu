@@ -58,6 +58,21 @@ public class Player extends PlayerAbstract {
 
     }
 
+    @Override
+    public void mouseClicked(int k) {
+
+    }
+
+    @Override
+    public void mouseReleased(int k) {
+
+    }
+
+    @Override
+    public void fireRocket() {
+
+    }
+
     public void draw(Graphics g){
         if(direction == 1){
             animation.draw(g,(int)positionX + GameManager.getInstance().getLocationX(),

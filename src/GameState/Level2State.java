@@ -8,6 +8,7 @@ import Entities.Gift.GiftAbstract;
 import Entities.Gift.GiftManager;
 import Entities.Player.PlayerFly;
 import Entities.Player.PlayerManager;
+import Entities.Player.PlayerMouse;
 import Entities.Sound.AudioPlayer;
 import Entities.Weapon.BulletAbstract;
 import Entities.Weapon.BulletManager;
@@ -16,6 +17,7 @@ import Main.GameManager;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.HashMap;
@@ -25,9 +27,11 @@ import java.util.Vector;
  * Created by Mr Hung on 3/15/2016.
  */
 public class Level2State extends GameState {
+
     private HashMap<String,AudioPlayer> sound;
     private BufferedImage background;
     private PlayerFly player;
+    private PlayerMouse playerMouse;
     Vector<EnemyAbstract> vectorEnemy;
     Vector<GiftAbstract> vectorGift;
     private BossLevel1 boss;
@@ -48,12 +52,21 @@ public class Level2State extends GameState {
 
     @Override
     public void init() {
-
+        playerMouse = PlayerManager.getInstance().getPlayerMouse();
+        player = PlayerManager.getInstance().getPlayerFly();
+        vectorEnemy = EnemyManager.getInstance().getVectorEnemy();
+        vectorGift = GiftManager.getInstance().getVectorGift();
+        sound = new HashMap<>();
+        sound.put("boss_background",new AudioPlayer(Helper.BOSS1_SOUND));
+        for(EnemyAbstract enemy : EnemyManager.getInstance().getVectorEnemy()){
+            PlayerManager.getInstance().getPlayerFly().addObserver(enemy);
+        }
     }
 
     @Override
     public void update() {
         player.update();
+        playerMouse.update();
         // dung man hinh va tao boss
         int loX = GameManager.getInstance().getLocationX();
         if(GameManager.getInstance().getLocationX() >= -background.getWidth()+Helper.WIDTH){
@@ -70,9 +83,11 @@ public class Level2State extends GameState {
             player.setPositionY(player.getPositionY() + 10);
         }
         // gamve over
-        if(player.getPositionY() + player.getSprite().getHeight() >= Helper.HEIGHT || player.getHp() <= 0){
+        if(player.getPositionY() + player.getSprite().getHeight() >= Helper.HEIGHT || player.getHp() <= 0 ||
+                playerMouse.getPositionY()+ player.getSprite().getHeight() >= Helper.HEIGHT || playerMouse.getHp() <= 0 ){
             gsm.states.pop();
             gsm.states.push(new GameOverState(gsm));
+
         }
         for(EnemyAbstract enemy : vectorEnemy){
             enemy.update();
@@ -92,7 +107,6 @@ public class Level2State extends GameState {
         }
         if(BulletAbstract.isSlow){
             count++;
-            System.out.println(count);
             if(count >= 600){
                 BulletAbstract.isSlow = false;
                 count = 0;
@@ -107,6 +121,7 @@ public class Level2State extends GameState {
     public void draw(Graphics g) {
         g.drawImage(this.background, GameManager.getInstance().getLocationX(),GameManager.getInstance().getLocationY(),null);
         player.draw(g);
+        playerMouse.draw(g);
         for(EnemyAbstract enemy : vectorEnemy){
             enemy.draw(g);
         }
@@ -131,5 +146,15 @@ public class Level2State extends GameState {
     @Override
     public void keyTyped(int k) {
         player.keyTyped(k);
+    }
+
+    @Override
+    public void mouseClicked(int k) {
+       playerMouse.mouseClicked(k);
+    }
+
+    @Override
+    public void mouseReleased(int k) {
+        playerMouse.mouseReleased(k);
     }
 }
