@@ -1,0 +1,31 @@
+package Entities.Enemy;
+
+import Entities.Animation;
+import GameHelper.Helper;
+
+import java.awt.*;
+
+/**
+ * Created by Mr Hung on 3/18/2016.
+ */
+public class Enemy7 extends EnemyAbstract {
+    Animation anim;
+
+    public Enemy7(double positionX, double positionY) {
+        super(positionX, positionY);
+        anim = new Animation(Helper.ENEMY7, 167, 115, 100);
+        imageWidth = 167;
+        imageHeight = 115;
+        hp = 10;
+    }
+
+    public void move() {
+        //Di chuyen tu phai qua trai.
+        this.positionX -= Helper.ENEMY7_SPEED;
+    }
+
+    @Override
+    public void draw(Graphics g) {
+        anim.draw(g, (int) this.positionX, (int) this.positionY);
+    }
+}
