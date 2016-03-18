@@ -14,14 +14,15 @@ import java.awt.event.WindowEvent;
  */
 public class GameWindow extends Frame implements Runnable, KeyListener {
     private boolean isRunning = true;
-    Graphics seconds;
-    Image image;
-    GameStateManager gsm;
+    private Image backImage;
+    private Graphics backGraphics;
+    GameStateManager gsm = new GameStateManager();
 
     public GameWindow(){
         this.setGame();
         this.init();
         this.setFocusable(true);
+
 
     }
 
@@ -44,7 +45,7 @@ public class GameWindow extends Frame implements Runnable, KeyListener {
     }
 
     public void init(){
-        gsm = new GameStateManager();
+
         GameManager.getInstance().setWindowWidth(1600);
         GameManager.getInstance().setWindowHeight(900);
     }
@@ -74,17 +75,19 @@ public class GameWindow extends Frame implements Runnable, KeyListener {
     }
 
     @Override
-    public void update(Graphics g){
-        if(image == null){
-            image = createImage(this.getWidth(), this.getHeight());
-            seconds= image.getGraphics();
+    public void update(Graphics g) {
+        //    super.update(g); //To change body of generated methods, choose Tools | Templates.
+        if (backImage == null) {
+            backImage = createImage(this.getWidth(), this.getHeight());
+            backGraphics = backImage.getGraphics();
         }
-        seconds.setColor(getBackground());
-        seconds.fillRect(0,0,getWidth(),getHeight());
-        seconds.setColor(getForeground());
-        paint(seconds);
-        g.drawImage(image,0,0,null);
+        backGraphics.setColor(getBackground());
+        backGraphics.fillRect(0, 0, getWidth(), getHeight());
+        backGraphics.setColor(getForeground());
+        paint(backGraphics);
+        g.drawImage(backImage, 0, 0, null);
     }
+
 
     @Override
     public void keyTyped(KeyEvent e) {
