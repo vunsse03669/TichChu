@@ -76,6 +76,9 @@ public class PlayerFly extends PlayerAbstract {
         }
         g.setFont(new Font("Arial Black",Font.PLAIN,20));
         g.drawString("Score: "+this.score, Helper.WIDTH - 200, 100);
+        g.setColor(Color.green);
+        g.fillRect((int)this.positionX-5,(int)this.positionY-20,hp*50,5);
+        g.drawRect((int)this.positionX-5,(int)this.positionY-20,hp*50,5);
     }
 
     @Override
@@ -97,7 +100,11 @@ public class PlayerFly extends PlayerAbstract {
                 BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv2(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
                 break;
             case 3:
-                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv3(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
+                //BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv3(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
+                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv5(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
+                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv1(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
+                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv4(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
+
                 break;
             default:
                 BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv1(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));

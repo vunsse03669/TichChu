@@ -17,7 +17,7 @@ public class Ruoi extends EnemyAbstract {
         imageWidth = 178;
         imageHeight = 149;
         hp = 8;
-        this.speed = 3;
+        this.speed = Helper.ENEMY1_SPEED;
     }
 
     public void move() {

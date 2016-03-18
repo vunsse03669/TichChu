@@ -102,5 +102,5 @@ public class GameWindow extends Frame implements Runnable, KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         gsm.keyRelased(e.getKeyCode());
-    }
+}
 }

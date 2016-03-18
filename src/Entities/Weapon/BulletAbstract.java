@@ -19,13 +19,16 @@ import java.util.HashMap;
 public abstract class BulletAbstract extends WeaponAbstract {
     private HashMap<String,AudioPlayer> sound;
     protected int speed;
+    public static boolean isSlow = false;
     public BulletAbstract(double positionX, double positionY) {
         super(positionX, positionY);
         sound = new HashMap<>();
         sound.put("bang",new AudioPlayer(Helper.BANG));
+
     }
     public void update(){
         this.move();
+
     }
     public abstract void move();
 
@@ -38,6 +41,7 @@ public abstract class BulletAbstract extends WeaponAbstract {
     }
 
 
+
     public boolean collisionEnemy(){
 
         boolean isCollision = false;
@@ -47,13 +51,18 @@ public abstract class BulletAbstract extends WeaponAbstract {
                     (int)enemy.getImageWidth(),(int)enemy.getImageHeight());
             if(rectBullet.intersects(rectEnemy)){
                 enemy.setHp(enemy.getHp()- this.damage);
-                if(enemy.getHp() <= 0){
+                if(isSlow){
+                    enemy.setSpeed(enemy.getSpeed()-1);
+                }
+                else if(enemy.getHp() <= 0){
+                    enemy.setSpeed(Helper.ENEMY1_SPEED);
                     sound.get("bang").play();
                     EnemyManager.getInstance().getVectorEnemy().remove(enemy);
                     PlayerManager.getInstance().getPlayerFly().setScore( PlayerManager.getInstance().getPlayerFly().getScore()+10);
                     Helper.SCORE = PlayerManager.getInstance().getPlayerFly().getScore();
 
                 }
+
                 isCollision = true;
                 break;
             }

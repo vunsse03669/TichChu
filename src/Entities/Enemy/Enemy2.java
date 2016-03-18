@@ -10,8 +10,7 @@ import java.awt.*;
  */
 public class Enemy2  extends EnemyAbstract {
     Animation anim, anim1;
-    int speedX = 3;
-    int speedY = 0;
+
     int e = 0;
 
     public Enemy2(double positionX, double positionY) {
@@ -20,13 +19,15 @@ public class Enemy2  extends EnemyAbstract {
         imageWidth = 57;
         imageHeight = 36;
         hp = 1;
+        this.speed = Helper.ENEMY1_SPEED;
+
     }
 
     public void move() {
         //Di chuyen tu phai qua trai.
         e++;
         this.positionY += 2 * Math.sin(e * Math.PI/96);
-        this.positionX -= speedX;
+        this.positionX -= this.speed;
     }
 
     @Override

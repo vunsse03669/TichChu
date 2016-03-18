@@ -39,6 +39,7 @@ public class Helper {
     public static final String BULLET_LV3 = "Resources/Bullet/bullet_lv3.png";
     public static final String GIFT_BULLET = "Resources/Image/gift.png";
     public static final String HEART = "Resources/Image/heart.png";
+    public static final String ICE = "Resources/Image/ice.jpg";
     public static final int GIFT_SPEED = 3;
 
     public static final String MENU_SOUND = "Resources/Music/background.wav";

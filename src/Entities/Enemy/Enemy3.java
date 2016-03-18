@@ -16,12 +16,13 @@ public class Enemy3 extends EnemyAbstract {
         imageWidth = 88;
         imageHeight = 58;
         hp = 2;
+        this.speed = Helper.ENEMY1_SPEED;
     }
 
     @Override
     public void move() {
         this.positionY += 2;
-        this.positionX -= 2;
+        this.positionX -= this.speed;
     }
 
     @Override

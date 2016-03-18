@@ -17,11 +17,12 @@ public class Enemy7 extends EnemyAbstract {
         imageWidth = 167;
         imageHeight = 115;
         hp = 10;
+        this.speed = Helper.ENEMY1_SPEED;
     }
 
     public void move() {
         //Di chuyen tu phai qua trai.
-        this.positionX -= Helper.ENEMY7_SPEED;
+        this.positionX -= this.speed;
     }
 
     @Override

@@ -31,6 +31,7 @@ public class Level2State extends GameState {
     Vector<EnemyAbstract> vectorEnemy;
     Vector<GiftAbstract> vectorGift;
     private BossLevel1 boss;
+    private static int count = 0;
 
     public Level2State(GameStateManager gsm) {
         super(gsm);
@@ -88,6 +89,14 @@ public class Level2State extends GameState {
         }
         for(GiftAbstract gift : GiftManager.getInstance().getVectorGift()){
             gift.update();
+        }
+        if(BulletAbstract.isSlow){
+            count++;
+            System.out.println(count);
+            if(count >= 600){
+                BulletAbstract.isSlow = false;
+                count = 0;
+            }
         }
 //        if(boss != null){
 //            boss.update();

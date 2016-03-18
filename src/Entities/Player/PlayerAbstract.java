@@ -7,6 +7,7 @@ import Entities.GameObject;
 import Entities.Gift.GiftAbstract;
 import Entities.Gift.GiftManager;
 import Entities.Gift.Heart;
+import Entities.Gift.Ice;
 import Entities.Sound.AudioPlayer;
 import Entities.Weapon.BulletAbstract;
 import Entities.Weapon.BulletManager;
@@ -31,6 +32,7 @@ public abstract class PlayerAbstract extends GameObject {
     protected int score;
     protected int levelBullet;
 
+
     public PlayerAbstract(double positionX, double positionY){
         this.score = 0;
         this.positionX = positionX;
@@ -48,6 +50,7 @@ public abstract class PlayerAbstract extends GameObject {
     }
     @Override
     public void update() {
+        System.out.println(BulletAbstract.isSlow);
         this.move();
         for(BulletAbstract bullet : BulletManager.getInstance().getVectorBulelt()){
             bullet.update();
@@ -61,6 +64,10 @@ public abstract class PlayerAbstract extends GameObject {
                 if(gift instanceof Heart){
                     this.hp++;
                     GiftManager.getInstance().getVectorGift().remove(gift);
+                }
+                else if( gift instanceof Ice){
+                    GiftManager.getInstance().getVectorGift().remove(gift);
+                    BulletAbstract.isSlow = true;
                 }
                 else{
                     this.levelBullet++;
