@@ -6,6 +6,7 @@ import Entities.Enemy.EnemyManager;
 import Entities.GameObject;
 import Entities.Gift.GiftAbstract;
 import Entities.Gift.GiftManager;
+import Entities.Gift.Heart;
 import Entities.Sound.AudioPlayer;
 import Entities.Weapon.BulletAbstract;
 import Entities.Weapon.BulletManager;
@@ -42,7 +43,7 @@ public abstract class PlayerAbstract extends GameObject {
         vectorBullet = BulletManager.getInstance().getVectorBulelt();
         try{
             this.sprite = ImageIO.read(new File("Resources/Image/TT1.png"));
-            this.heart = ImageIO.read(new File("Resources/Image/heart.png"));
+            this.heart = ImageIO.read(new File(Helper.HEART));
         }catch(Exception e){}
     }
     @Override
@@ -57,9 +58,15 @@ public abstract class PlayerAbstract extends GameObject {
         }
         for(GiftAbstract gift : GiftManager.getInstance().getVectorGift()){
             if(gift.collision()){
-                this.levelBullet++;
-                sound.get("anqua").play();
-                GiftManager.getInstance().getVectorGift().remove(gift);
+                if(gift instanceof Heart){
+                    this.hp++;
+                    GiftManager.getInstance().getVectorGift().remove(gift);
+                }
+                else{
+                    this.levelBullet++;
+                    sound.get("anqua").play();
+                    GiftManager.getInstance().getVectorGift().remove(gift);
+                }
                 return;
             }
         }

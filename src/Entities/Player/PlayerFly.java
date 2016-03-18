@@ -3,10 +3,7 @@ package Entities.Player;
 
 import Entities.Animation;
 import Entities.Sound.AudioPlayer;
-import Entities.Weapon.BulletAbstract;
-import Entities.Weapon.BulletManager;
-import Entities.Weapon.BulletPlayerLv1;
-import Entities.Weapon.BulletPlayerLv2;
+import Entities.Weapon.*;
 import GameHelper.Helper;
 import GameState.Help;
 import Main.GameManager;
@@ -98,6 +95,9 @@ public class PlayerFly extends PlayerAbstract {
                 break;
             case 2:
                 BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv2(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
+                break;
+            case 3:
+                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv3(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
                 break;
             default:
                 BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv1(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));

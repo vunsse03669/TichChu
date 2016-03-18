@@ -12,6 +12,7 @@ public class GiftManager {
     private GiftManager(){
         vectorGift = new Vector<GiftAbstract>();
         vectorGift.add(new GiftBullet(1400,450));
+        vectorGift.add(new Heart(1600,450));
         vectorGift.add(new GiftBullet(10000,700));
     }
 

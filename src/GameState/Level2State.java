@@ -60,6 +60,7 @@ public class Level2State extends GameState {
         }else{
             if(boss == null) {
                 boss = new BossLevel1(Helper.WIDTH - 200, 450);
+                EnemyManager.getInstance().getVectorEnemy().add(boss);
                 sound.get("boss_background").play();
             }
         }
@@ -88,9 +89,9 @@ public class Level2State extends GameState {
         for(GiftAbstract gift : GiftManager.getInstance().getVectorGift()){
             gift.update();
         }
-        if(boss != null){
-            boss.update();
-        }
+//        if(boss != null){
+//            boss.update();
+//        }
     }
 
     @Override
@@ -103,9 +104,9 @@ public class Level2State extends GameState {
         for(GiftAbstract gift : GiftManager.getInstance().getVectorGift()){
             gift.draw(g);
         }
-        if(boss != null){
-            boss.draw(g);
-        }
+//        if(boss != null){
+//            boss.draw(g);
+//        }
     }
 
     @Override

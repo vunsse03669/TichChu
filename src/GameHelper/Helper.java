@@ -9,7 +9,7 @@ public class Helper {
     public static final int HEIGHT = 900;
     public static final int FPS = 1000/60;
     public static final int PLAYER_SPEED = 3;
-    public static final int PLAYER_HP = 10;
+    public static final int PLAYER_HP = 3;
     public static final int PLAYER_BULLET_SPEED = 3;
     public static final int ENEMY_SPEED = 3;
     public static final int ENEMY1_SPEED = 3;
@@ -36,7 +36,9 @@ public class Helper {
     public static final String MENU_STATE = "Resources/Image/background.jpg";
     public static final String BULLET_LV1 = "Resources/Bullet/bullet_lv1.png";
     public static final String BULLET_LV2 = "Resources/Bullet/bullet_lv2.png";
+    public static final String BULLET_LV3 = "Resources/Bullet/bullet_lv3.png";
     public static final String GIFT_BULLET = "Resources/Image/gift.png";
+    public static final String HEART = "Resources/Image/heart.png";
     public static final int GIFT_SPEED = 3;
 
     public static final String MENU_SOUND = "Resources/Music/background.wav";
