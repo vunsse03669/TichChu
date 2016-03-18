@@ -54,7 +54,7 @@ public class MenuState extends GameState {
                 g.setColor(Color.green.WHITE);
             }
             int width = g.getFontMetrics().stringWidth(options[i]);
-            g.setFont(new Font("Arial Black",Font.PLAIN,50));
+            g.setFont(new Font("Cooper Black",Font.PLAIN,50));
             g.drawString(options[i], Helper.WIDTH/2 -width/2, Helper.HEIGHT/2 - 100 + i*100);
         }
     }
