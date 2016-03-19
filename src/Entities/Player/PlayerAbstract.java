@@ -57,7 +57,6 @@ public abstract class PlayerAbstract extends GameObject implements Subject{
     }
     @Override
     public void update() {
-        System.out.println(isWater);
         //fireRocket();
         if(coin >= 20){
             rocket++;
@@ -69,6 +68,7 @@ public abstract class PlayerAbstract extends GameObject implements Subject{
             rocket2.update();
             if(rocket2.getPositionX() == 500){
                 vectorRocket.remove(rocket2);
+                System.out.println("xxx");
                 BulletManager.getInstance().getVectorBulelt().add(new BulletRocket1(Helper.WIDTH/2,Helper.HEIGHT/2));
                 BulletManager.getInstance().getVectorBulelt().add(new BulletRocket2(Helper.WIDTH/2,Helper.HEIGHT/2));
                 BulletManager.getInstance().getVectorBulelt().add(new BulletRocket3(Helper.WIDTH/2,Helper.HEIGHT/2));
@@ -79,10 +79,6 @@ public abstract class PlayerAbstract extends GameObject implements Subject{
         for(BulletAbstract bullet : BulletManager.getInstance().getVectorBulelt()){
             bullet.update();
             if(bullet.collisionEnemy()){
-                BulletManager.getInstance().getVectorBulelt().remove(bullet);
-                return;
-            }
-            if(bullet.collisionWater()){
                 BulletManager.getInstance().getVectorBulelt().remove(bullet);
                 return;
             }

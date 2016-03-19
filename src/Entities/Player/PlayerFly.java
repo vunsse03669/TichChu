@@ -74,13 +74,6 @@ public class PlayerFly extends PlayerAbstract {
                 }
             }
         }
-        if(k == KeyEvent.VK_E){
-            if(count <= 5){
-                if(this.isWater){
-                    this.shotWater();
-                }
-            }
-        }
 
     }
 
@@ -96,15 +89,8 @@ public class PlayerFly extends PlayerAbstract {
         g.drawString("Score1: "+this.score, Helper.WIDTH - 200, 100);
         g.drawString("Coin1: "+this.coin, Helper.WIDTH - 200, 130);
         g.setColor(Color.green);
-        if(hp > 3){
-            g.fillRect((int)this.positionX-5,(int)this.positionY-20,150,5);
-            g.drawRect((int)this.positionX-5,(int)this.positionY-20,150,5);
-        }
-        if(hp <= 3){
-            g.fillRect((int)this.positionX-5,(int)this.positionY-20,hp*50,5);
-            g.drawRect((int)this.positionX-5,(int)this.positionY-20,hp*50,5);
-        }
-
+        g.fillRect((int)this.positionX-5,(int)this.positionY-20,hp*50,5);
+        g.drawRect((int)this.positionX-5,(int)this.positionY-20,hp*50,5);
         for(Rocket2 rocket2 : vectorRocket){
             rocket2.draw(g);
         }
@@ -139,6 +125,6 @@ public class PlayerFly extends PlayerAbstract {
 
     @Override
     public void shotWater() {
-        vectorBullet.add(new BulletWater(this.positionX+100,this.positionY+100));
+
     }
 }

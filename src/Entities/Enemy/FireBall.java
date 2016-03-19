@@ -27,6 +27,7 @@ public class FireBall {
     }
     public void update(){
         this.move();
+        System.out.println(this.positionX);
     }
     public void move() {
         angle++;
@@ -37,28 +38,5 @@ public class FireBall {
 
     public void draw(Graphics g){
         g.drawImage(this.sprite,(int)this.positionX,(int)this.positionY,null);
-    }
-
-    public double getPositionX() {
-        return positionX;
-    }
-
-    public void setPositionY(double positionY) {
-        this.positionY = positionY;
-    }
-
-    public void setPositionX(double positionX) {
-        this.positionX = positionX;
-    }
-
-    public double getWidth(){
-        return sprite.getWidth();
-    }
-    public double getHeight(){
-        return sprite.getHeight();
-    }
-
-    public double getPositionY() {
-        return positionY;
     }
 }

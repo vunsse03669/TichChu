@@ -19,7 +19,7 @@ public class EnemyManager {
             for(int j = 0; j < 3; j++){
                 vectorEnemy.add(new Enemy3(500 +j*100,100 + i*100));
                 vectorEnemy.add(new Enemy2(2000+j*100,100 + i*100));
-               // vectorEnemy.add(new Enemy1(5500+j*100,100 + i*100));
+                vectorEnemy.add(new Enemy1(5500+j*100,100 + i*100));
                 vectorEnemy.add(new Enemy8(13000+j*100,100 + i*100));
                 vectorEnemy.add(new Enemy9(14000+j*100,100 + i*100));
             }

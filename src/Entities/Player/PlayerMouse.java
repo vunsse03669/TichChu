@@ -27,7 +27,7 @@ public class PlayerMouse extends PlayerAbstract {
         speedX = 0;
         speedY = 6;
         levelBullet = 1;
-        animation = new Animation(Helper.PLAYER2,216,200,100);
+        animation = new Animation(Helper.PLAYER_FLY,216,200,100);
         sound = new HashMap<String,AudioPlayer>();
         sound.put("jump",new AudioPlayer(Helper.JUMP_SOUND));
         sound.put("shot",new AudioPlayer(Helper.PLAYER_SHOT));
@@ -86,7 +86,7 @@ public class PlayerMouse extends PlayerAbstract {
 
     }
 
-    public void draw(Graphics g){   
+    public void draw(Graphics g){
         animation.draw(g,(int)positionX ,(int)positionY );
         for(int i = 0; i < this.rocket; i++){
             g.drawImage(this.heart,40 + i*32,100,null);
@@ -98,13 +98,7 @@ public class PlayerMouse extends PlayerAbstract {
         g.drawString("Score2: "+this.score, Helper.WIDTH - 200,200);
         g.drawString("Coin2: "+this.coin, Helper.WIDTH - 200, 230);
         g.setColor(Color.green);
-        if(hp > 3){
-            g.fillRect((int)this.positionX-5,(int)this.positionY-20,150,5);
-            g.drawRect((int)this.positionX-5,(int)this.positionY-20,150,5);
-        }
-        if(hp <= 3){
-            g.fillRect((int)this.positionX-5,(int)this.positionY-20,hp*50,5);
-            g.drawRect((int)this.positionX-5,(int)this.positionY-20,hp*50,5);
-        }
+        g.fillRect((int)this.positionX-5,(int)this.positionY-20,hp*50,5);
+        g.drawRect((int)this.positionX-5,(int)this.positionY-20,hp*50,5);
     }
 }

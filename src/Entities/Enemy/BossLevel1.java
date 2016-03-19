@@ -17,7 +17,7 @@ public class BossLevel1 extends EnemyAbstract {
 
     public BossLevel1(double positionX, double positionY) {
         super(positionX, positionY);
-        this.hp = 20;
+        this.hp = 100;
         animation = new Animation(Helper.BOSS_LV1,135,148,100);
         imageHeight = 148;
         imageWidth = 135;
@@ -27,26 +27,22 @@ public class BossLevel1 extends EnemyAbstract {
 
     @Override
     public void move() {
-        this.positionY += this.speed;
-        if(this.positionY >= Helper.HEIGHT || this.positionY <= 0){
-            this.speed =- this.speed;
+        if(this.hp >= 80){
+            this.positionY += this.speed;
+            if(this.positionY >= Helper.HEIGHT || this.positionY <= 0){
+                this.speed =- this.speed;
+            }
+        }else if(this.hp >= 50 && this.hp < 80){
+            angle++;
+            this.positionX += (double) (10* Math.sin(angle * 0.09));
+            this.positionY += (double) (10 * Math.cos(angle * 0.09));
+            positionX-=+ Helper.PLAYER_SPEED;
         }
-//        if(this.hp >= 80){
-//            this.positionY += this.speed;
-//            if(this.positionY >= Helper.HEIGHT || this.positionY <= 0){
-//                this.speed =- this.speed;
-//            }
-//        }else if(this.hp >= 50 && this.hp < 80){
-//            angle++;
-//            this.positionX += (double) (10* Math.sin(angle * 0.09));
-//            this.positionY += (double) (10 * Math.cos(angle * 0.09));
-//            positionX-=+ Helper.PLAYER_SPEED;
-//        }
-//        else{
-//            this.positionY += 15;
-//            this.positionY += 15;
-//
-//        }
+        else{
+            this.positionY += 15;
+            this.positionY += 15;
+
+        }
 
     }
 

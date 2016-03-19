@@ -43,7 +43,6 @@ public class Level2State extends GameState {
         vectorFireBall = FireBallManager.getInstance().getVectorFire();
         sound = new HashMap<>();
         sound.put("boss_background",new AudioPlayer(Helper.BOSS1_SOUND));
-        //Helper.isPass = true;
         try{
             this.background = ImageIO.read(new File(Helper.BACKGROUND_LV1));
 
@@ -52,7 +51,6 @@ public class Level2State extends GameState {
 
     @Override
     public void init() {
-
         playerMouse = PlayerManager.getInstance().getPlayerMouse();
         player = PlayerManager.getInstance().getPlayerFly();
         vectorEnemy = EnemyManager.getInstance().getVectorEnemy();
@@ -66,11 +64,6 @@ public class Level2State extends GameState {
 
     @Override
     public void update() {
-        if(Helper.isPass){
-            System.out.println(Helper.isPass);
-            //gsm.states.pop();
-            gsm.states.push(new Level3State(gsm));
-        }
         for(FireBall fire : vectorFireBall){
             fire.update();
         }

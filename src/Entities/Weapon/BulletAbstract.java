@@ -42,22 +42,7 @@ public abstract class BulletAbstract extends WeaponAbstract {
         this.speed = speed;
     }
 
-    public boolean collisionWater(){
-        boolean is = false;
-        Rectangle rectBullet = new Rectangle((int)this.positionX,(int)this.positionY,(int)this.getWidth(),(int)this.getHeight());
-        for(FireBall fire : FireBallManager.getInstance().getVectorFire()){
-            Rectangle rectFire = new Rectangle((int)fire.getPositionX(),(int)fire.getPositionY(),(int)fire.getWidth(),(int)fire.getHeight());
 
-            if(this instanceof BulletWater){
-                if(rectBullet.intersects(rectFire)){
-                    is = true;
-                    FireBallManager.getInstance().getVectorFire().remove(fire);
-                    break;
-                }
-            }
-        }
-        return is;
-    }
 
     public boolean collisionEnemy(){
 
@@ -88,19 +73,12 @@ public abstract class BulletAbstract extends WeaponAbstract {
                         }
                         else if(enemy.getHp() <= 0){
                             //enemy.setSpeed(Helper.ENEMY1_SPEED);
-                            if(enemy instanceof BossLevel1){
-                                System.out.println("xxxxxqeq");
-                                EnemyManager.getInstance().getVectorEnemy().remove(enemy);
-                                Helper.isPass = true;
-
-                            }else{
-                                sound.get("bang").play();
-                                EnemyManager.getInstance().getVectorEnemy().remove(enemy);
-                                Coin coin = new Coin(enemy.getPositionX(),enemy.getPositionY());
-                                GiftManager.getInstance().getVectorGift().add(coin);
-                                PlayerManager.getInstance().getPlayerFly().setScore( PlayerManager.getInstance().getPlayerFly().getScore()+10);
-                                Helper.SCORE = PlayerManager.getInstance().getPlayerFly().getScore();
-                            }
+                            sound.get("bang").play();
+                            EnemyManager.getInstance().getVectorEnemy().remove(enemy);
+                            Coin coin = new Coin(enemy.getPositionX(),enemy.getPositionY());
+                            GiftManager.getInstance().getVectorGift().add(coin);
+                            PlayerManager.getInstance().getPlayerFly().setScore( PlayerManager.getInstance().getPlayerFly().getScore()+10);
+                            Helper.SCORE = PlayerManager.getInstance().getPlayerFly().getScore();
 
                         }
 
