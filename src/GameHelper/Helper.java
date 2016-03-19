@@ -39,6 +39,7 @@ public class Helper {
     public static final String DRAGON = "Resources/Image/DragonFly.png";
     public static final String BOSS_LV1 = "Resources/Image/boss_lv1.png";
     public static final String BACKGROUND_LV1 = "Resources/TilesMap/lv1.png";
+    public static final String BACKGROUND_LV2 = "Resources/TilesMap/lv2.png";
     public static final String ABOUT_STATE = "Resources/Image/about.jpg";
     public static final String HELP_STATE = "Resources/Image/help.jpg";
     public static final String MENU_STATE = "Resources/Image/background.jpg";

@@ -17,7 +17,7 @@ public class BossLevel1 extends EnemyAbstract {
 
     public BossLevel1(double positionX, double positionY) {
         super(positionX, positionY);
-        this.hp = 100;
+        this.hp = 20;
         animation = new Animation(Helper.BOSS_LV1,135,148,100);
         imageHeight = 148;
         imageWidth = 135;
