@@ -86,7 +86,7 @@ public class PlayerMouse extends PlayerAbstract {
 
     }
 
-    public void draw(Graphics g){
+    public void draw(Graphics g){   
         animation.draw(g,(int)positionX ,(int)positionY );
         for(int i = 0; i < this.rocket; i++){
             g.drawImage(this.heart,40 + i*32,100,null);
