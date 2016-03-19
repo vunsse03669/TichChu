@@ -27,22 +27,26 @@ public class BossLevel1 extends EnemyAbstract {
 
     @Override
     public void move() {
-        if(this.hp >= 80){
-            this.positionY += this.speed;
-            if(this.positionY >= Helper.HEIGHT || this.positionY <= 0){
-                this.speed =- this.speed;
-            }
-        }else if(this.hp >= 50 && this.hp < 80){
-            angle++;
-            this.positionX += (double) (10* Math.sin(angle * 0.09));
-            this.positionY += (double) (10 * Math.cos(angle * 0.09));
-            positionX-=+ Helper.PLAYER_SPEED;
+        this.positionY += this.speed;
+        if(this.positionY >= Helper.HEIGHT || this.positionY <= 0){
+            this.speed =- this.speed;
         }
-        else{
-            this.positionY += 15;
-            this.positionY += 15;
-
-        }
+//        if(this.hp >= 80){
+//            this.positionY += this.speed;
+//            if(this.positionY >= Helper.HEIGHT || this.positionY <= 0){
+//                this.speed =- this.speed;
+//            }
+//        }else if(this.hp >= 50 && this.hp < 80){
+//            angle++;
+//            this.positionX += (double) (10* Math.sin(angle * 0.09));
+//            this.positionY += (double) (10 * Math.cos(angle * 0.09));
+//            positionX-=+ Helper.PLAYER_SPEED;
+//        }
+//        else{
+//            this.positionY += 15;
+//            this.positionY += 15;
+//
+//        }
 
     }
 

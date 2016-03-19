@@ -73,6 +73,11 @@ public class Player extends PlayerAbstract {
 
     }
 
+    @Override
+    public void shotWater() {
+
+    }
+
     public void draw(Graphics g){
         if(direction == 1){
             animation.draw(g,(int)positionX + GameManager.getInstance().getLocationX(),

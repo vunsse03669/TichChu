@@ -85,6 +85,8 @@ public class GameOverState extends GameState {
                 gsm.states.pop();
                 PlayerManager.getInstance().getPlayerFly().setPositionY(200);
                 PlayerManager.getInstance().getPlayerFly().setPositionX(100);
+                PlayerManager.getInstance().getPlayerMouse().setPositionY(300);
+                PlayerManager.getInstance().getPlayerMouse().setPositionX(100);
                 PlayerManager.getInstance().getPlayerFly().setHp(Helper.PLAYER_HP);
                 gsm.states.push(new Level2State(gsm));
             }else if(currentSelection == 1){

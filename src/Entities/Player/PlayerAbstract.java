@@ -27,16 +27,19 @@ public abstract class PlayerAbstract extends GameObject implements Subject{
     protected int hp;
     protected BufferedImage heart;
     protected Vector<BulletAbstract> vectorBullet;
+    protected Vector<Rocket2> vectorRocket;
     protected int score;
     protected int levelBullet;
     protected int coin;
     protected int rocket;
+    protected boolean isWater;
     Vector<Observer> vectorObserver = new Vector<>();
 
 
     public PlayerAbstract(double positionX, double positionY){
+        isWater = false;
         coin = 0;
-        rocket = 0;
+        rocket = 5;
         this.score = 0;
         this.positionX = positionX;
         this.positionY = positionY;
@@ -46,22 +49,40 @@ public abstract class PlayerAbstract extends GameObject implements Subject{
         sound.put("anqua",new AudioPlayer(Helper.GIFT_SOUND));
         sound.put("bang",new AudioPlayer(Helper.BANG));
         vectorBullet = BulletManager.getInstance().getVectorBulelt();
+        vectorRocket = RocketManager.getInstance().getVectorRocket();
         try{
             this.sprite = ImageIO.read(new File("Resources/Image/TT1.png"));
-            this.heart = ImageIO.read(new File(Helper.HEART));
+            this.heart = ImageIO.read(new File(Helper.ROCKET1));
         }catch(Exception e){}
     }
     @Override
     public void update() {
+        System.out.println(isWater);
         //fireRocket();
         if(coin >= 20){
             rocket++;
             coin = 0;
         }
         this.move();
+
+        for(Rocket2 rocket2 : vectorRocket){
+            rocket2.update();
+            if(rocket2.getPositionX() == 500){
+                vectorRocket.remove(rocket2);
+                BulletManager.getInstance().getVectorBulelt().add(new BulletRocket1(Helper.WIDTH/2,Helper.HEIGHT/2));
+                BulletManager.getInstance().getVectorBulelt().add(new BulletRocket2(Helper.WIDTH/2,Helper.HEIGHT/2));
+                BulletManager.getInstance().getVectorBulelt().add(new BulletRocket3(Helper.WIDTH/2,Helper.HEIGHT/2));
+                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv1(Helper.WIDTH/2,Helper.HEIGHT/2));
+                return;
+            }
+        }
         for(BulletAbstract bullet : BulletManager.getInstance().getVectorBulelt()){
             bullet.update();
             if(bullet.collisionEnemy()){
+                BulletManager.getInstance().getVectorBulelt().remove(bullet);
+                return;
+            }
+            if(bullet.collisionWater()){
                 BulletManager.getInstance().getVectorBulelt().remove(bullet);
                 return;
             }
@@ -71,6 +92,13 @@ public abstract class PlayerAbstract extends GameObject implements Subject{
                 if(gift instanceof Heart){
                     this.hp++;
                     GiftManager.getInstance().getVectorGift().remove(gift);
+                }else if(gift instanceof DauAn){
+                    Helper.PLAYER_SPEED +=2;
+                    for(EnemyAbstract enemy : EnemyManager.getInstance().getVectorEnemy()){
+                        enemy.setSpeed(Helper.PLAYER_SPEED);
+                    }
+                }else if(gift instanceof Water){
+                    isWater = true;
                 }
                 else if( gift instanceof Ice){
                     GiftManager.getInstance().getVectorGift().remove(gift);
@@ -201,6 +229,9 @@ public abstract class PlayerAbstract extends GameObject implements Subject{
     public void setRocket(int rocket) {
         this.rocket = rocket;
     }
+
+    public abstract void shotWater();
+
 
     @Override
     public void addObserver(Observer ob) {

@@ -15,6 +15,8 @@ public class GiftManager {
         vectorGift.add(new Heart(1600,450));
         vectorGift.add(new Ice(1700,450));
         vectorGift.add(new GiftBullet(10000,700));
+        vectorGift.add(new DauAn(1800,200));
+        vectorGift.add(new Water(1800,500));
     }
 
     public static GiftManager getInstance(){

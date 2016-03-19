@@ -60,7 +60,7 @@ public class GameWindow extends Frame implements Runnable, KeyListener,MouseList
     }
 
     @Override
-    public void run() {
+        public void run() {
         while(isRunning){
             gsm.update();
             repaint();

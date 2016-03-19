@@ -21,5 +21,6 @@ public class BulletPlayerLv1 extends BulletAbstract{
     @Override
     public void move() {
         this.positionX += 10;
+        System.out.println(positionX);
     }
 }

@@ -1,9 +1,6 @@
 package GameState;
 
-import Entities.Enemy.BossLevel1;
-import Entities.Enemy.Dragon;
-import Entities.Enemy.EnemyAbstract;
-import Entities.Enemy.EnemyManager;
+import Entities.Enemy.*;
 import Entities.Gift.GiftAbstract;
 import Entities.Gift.GiftManager;
 import Entities.Player.PlayerFly;
@@ -34,6 +31,7 @@ public class Level2State extends GameState {
     private PlayerMouse playerMouse;
     Vector<EnemyAbstract> vectorEnemy;
     Vector<GiftAbstract> vectorGift;
+    Vector<FireBall> vectorFireBall;
     private BossLevel1 boss;
     private static int count = 0;
 
@@ -42,6 +40,7 @@ public class Level2State extends GameState {
         player = PlayerManager.getInstance().getPlayerFly();
         vectorEnemy = EnemyManager.getInstance().getVectorEnemy();
         vectorGift = GiftManager.getInstance().getVectorGift();
+        vectorFireBall = FireBallManager.getInstance().getVectorFire();
         sound = new HashMap<>();
         sound.put("boss_background",new AudioPlayer(Helper.BOSS1_SOUND));
         try{
@@ -65,6 +64,13 @@ public class Level2State extends GameState {
 
     @Override
     public void update() {
+        if(Helper.isPass){
+            gsm.states.pop();
+            gsm.states.push(new Level3State(gsm));
+        }
+        for(FireBall fire : vectorFireBall){
+            fire.update();
+        }
         player.update();
         playerMouse.update();
         // dung man hinh va tao boss
@@ -83,8 +89,8 @@ public class Level2State extends GameState {
             player.setPositionY(player.getPositionY() + 10);
         }
         // gamve over
-        if(player.getPositionY() + player.getSprite().getHeight() >= Helper.HEIGHT || player.getHp() <= 0 ||
-                playerMouse.getPositionY()+ player.getSprite().getHeight() >= Helper.HEIGHT || playerMouse.getHp() <= 0 ){
+        if(player.getPositionY() + player.getSprite().getHeight() >= Helper.HEIGHT || player.getHp() <= 0
+               || playerMouse.getPositionY()+ player.getSprite().getHeight() >= Helper.HEIGHT || playerMouse.getHp() <= 0 ){
             gsm.states.pop();
             gsm.states.push(new GameOverState(gsm));
 
@@ -127,6 +133,9 @@ public class Level2State extends GameState {
         }
         for(GiftAbstract gift : GiftManager.getInstance().getVectorGift()){
             gift.draw(g);
+        }
+        for(FireBall fire : vectorFireBall){
+            fire.draw(g);
         }
 //        if(boss != null){
 //            boss.draw(g);
