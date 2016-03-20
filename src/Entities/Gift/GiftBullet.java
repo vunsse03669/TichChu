@@ -9,7 +9,7 @@ import java.io.File;
  * Created by Mr Hung on 3/17/2016.
  */
 public class GiftBullet extends GiftAbstract  {
-    public GiftBullet(double positionX, double positionY) {
+    public GiftBullet(int positionX, int positionY) {
         super(positionX, positionY);
         try{
             this.sprite = ImageIO.read(new File(Helper.GIFT_BULLET));

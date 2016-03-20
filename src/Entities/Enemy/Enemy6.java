@@ -11,7 +11,7 @@ import java.awt.*;
 public class Enemy6  extends EnemyAbstract {
     Animation anim;
 
-    public Enemy6(double positionX, double positionY) {
+    public Enemy6(int positionX, int positionY) {
         super(positionX, positionY);
         anim = new Animation(Helper.ENEMY6, 166, 118, 100);
         imageWidth = 166;

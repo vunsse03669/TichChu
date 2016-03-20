@@ -14,7 +14,7 @@ import java.io.File;
 public class Enemy1 extends EnemyAbstract {
 
 
-    public Enemy1(double positionX, double positionY) {
+    public Enemy1(int positionX, int positionY) {
         super(positionX, positionY);
 
         try{

@@ -11,8 +11,8 @@ public class PlayerManager {
 
     private PlayerManager(){
         playerFly = new PlayerFly(100,200);
-        player = new Player(100,200);
-        playerMouse = new PlayerMouse(100,300);
+       // player = new Player(100,200);
+       // playerMouse = new PlayerMouse(100,300);
     }
 
     public static PlayerManager getInstance(){

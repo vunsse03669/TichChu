@@ -13,7 +13,7 @@ public class Enemy2  extends EnemyAbstract {
 
     int e = 0;
 
-    public Enemy2(double positionX, double positionY) {
+    public Enemy2(int positionX, int positionY) {
         super(positionX, positionY);
 
         try{
@@ -33,8 +33,8 @@ public class Enemy2  extends EnemyAbstract {
     public void move() {
         //Di chuyen tu phai qua trai.
 
-        e++;
-        this.positionY += 2 * Math.sin(e * Math.PI/96);
+//        e++;
+//        this.positionY += 2 * Math.sin(e * Math.PI/96);
         this.positionX -= this.speed;
     }
 

@@ -10,7 +10,7 @@ import java.io.File;
  * Created by Mr Hung on 3/19/2016.
  */
 public class Coin extends GiftAbstract {
-    public Coin(double positionX, double positionY) {
+    public Coin(int positionX, int positionY) {
         super(positionX, positionY);
         try{
             this.sprite = ImageIO.read(new File(Helper.COIN));

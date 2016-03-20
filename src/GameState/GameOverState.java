@@ -42,7 +42,6 @@ public class GameOverState extends GameState {
     @Override
     public void draw(Graphics g) {
         g.drawImage(this.sprite,0,0,null);
-        int score = PlayerManager.getInstance().getPlayer().getScore();
         int width = g.getFontMetrics().stringWidth("Game Over");
         g.setFont(new Font("Arial Black",Font.BOLD,50));
         g.drawString("Game Over", Helper.WIDTH/2-width/2, Helper.HEIGHT/2 - 200 );
@@ -56,7 +55,7 @@ public class GameOverState extends GameState {
             }else{
                 g.setColor(Color.green.BLACK);
             }
-            int swidth = g.getFontMetrics().stringWidth(options[i]);
+
             g.setFont(new Font("Arial Black",Font.PLAIN,50));
             g.drawString(options[i], Helper.WIDTH/2 -140, Helper.HEIGHT/2 + 100 + i*100);
 
@@ -85,13 +84,10 @@ public class GameOverState extends GameState {
                 gsm.states.pop();
                 PlayerManager.getInstance().getPlayerFly().setPositionY(200);
                 PlayerManager.getInstance().getPlayerFly().setPositionX(100);
-                PlayerManager.getInstance().getPlayerMouse().setPositionY(300);
-                PlayerManager.getInstance().getPlayerMouse().setPositionX(100);
                 PlayerManager.getInstance().getPlayerFly().setHp(Helper.PLAYER_HP);
                 gsm.states.push(new Level2State(gsm));
             }else if(currentSelection == 1){
                 System.exit(0);
-
             }
         }
     }

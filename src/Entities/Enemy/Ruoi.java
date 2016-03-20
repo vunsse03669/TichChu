@@ -11,7 +11,7 @@ import java.awt.*;
 public class Ruoi extends EnemyAbstract {
     Animation anim;
 
-    public Ruoi(double positionX, double positionY) {
+    public Ruoi(int positionX, int positionY) {
         super(positionX, positionY);
         anim = new Animation(Helper.RUOI, 178, 149, 100);
         imageWidth = 178;

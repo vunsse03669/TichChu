@@ -28,7 +28,7 @@ public class Level2State extends GameState {
     private HashMap<String,AudioPlayer> sound;
     private BufferedImage background;
     private PlayerFly player;
-    private PlayerMouse playerMouse;
+    //private PlayerMouse playerMouse;
     Vector<EnemyAbstract> vectorEnemy;
     Vector<GiftAbstract> vectorGift;
     Vector<FireBall> vectorFireBall;
@@ -51,24 +51,30 @@ public class Level2State extends GameState {
 
     @Override
     public void init() {
-        playerMouse = PlayerManager.getInstance().getPlayerMouse();
-        player = PlayerManager.getInstance().getPlayerFly();
-        vectorEnemy = EnemyManager.getInstance().getVectorEnemy();
-        vectorGift = GiftManager.getInstance().getVectorGift();
-        sound = new HashMap<>();
-        sound.put("boss_background",new AudioPlayer(Helper.BOSS1_SOUND));
-        for(EnemyAbstract enemy : EnemyManager.getInstance().getVectorEnemy()){
-            PlayerManager.getInstance().getPlayerFly().addObserver(enemy);
-        }
+       //playerMouse = PlayerManager.getInstance().getPlayerMouse();
+//        player = PlayerManager.getInstance().getPlayerFly();
+//        vectorEnemy = EnemyManager.getInstance().getVectorEnemy();
+//        vectorGift = GiftManager.getInstance().getVectorGift();
+//        sound = new HashMap<>();
+//        sound.put("boss_background",new AudioPlayer(Helper.BOSS1_SOUND));
+//        for(EnemyAbstract enemy : EnemyManager.getInstance().getVectorEnemy()){
+//            PlayerManager.getInstance().getPlayerFly().addObserver(enemy);
+  //      }
     }
 
     @Override
     public void update() {
+        if(Helper.isPass){
+            System.out.println(Helper.isPass);
+            //gsm.states.pop();
+            gsm.states.push(new Level3State(gsm));
+        }
+
         for(FireBall fire : vectorFireBall){
             fire.update();
         }
         player.update();
-        playerMouse.update();
+       // playerMouse.update();
         // dung man hinh va tao boss
         int loX = GameManager.getInstance().getLocationX();
         if(GameManager.getInstance().getLocationX() >= -background.getWidth()+Helper.WIDTH){
@@ -85,8 +91,7 @@ public class Level2State extends GameState {
             player.setPositionY(player.getPositionY() + 10);
         }
         // gamve over
-        if(player.getPositionY() + player.getSprite().getHeight() >= Helper.HEIGHT || player.getHp() <= 0
-               || playerMouse.getPositionY()+ player.getSprite().getHeight() >= Helper.HEIGHT || playerMouse.getHp() <= 0 ){
+        if(player.getPositionY() + player.getSprite().getHeight() >= Helper.HEIGHT || player.getHp() <= 0){
             gsm.states.pop();
             gsm.states.push(new GameOverState(gsm));
 
@@ -123,7 +128,7 @@ public class Level2State extends GameState {
     public void draw(Graphics g) {
         g.drawImage(this.background, GameManager.getInstance().getLocationX(),GameManager.getInstance().getLocationY(),null);
         player.draw(g);
-        playerMouse.draw(g);
+       // playerMouse.draw(g);
         for(EnemyAbstract enemy : vectorEnemy){
             enemy.draw(g);
         }
@@ -133,9 +138,9 @@ public class Level2State extends GameState {
         for(FireBall fire : vectorFireBall){
             fire.draw(g);
         }
-//        if(boss != null){
-//            boss.draw(g);
-//        }
+        if(boss != null){
+            boss.draw(g);
+        }
     }
 
     @Override
@@ -155,11 +160,11 @@ public class Level2State extends GameState {
 
     @Override
     public void mouseClicked(int k) {
-       playerMouse.mouseClicked(k);
+       //playerMouse.mouseClicked(k);
     }
 
     @Override
     public void mouseReleased(int k) {
-        playerMouse.mouseReleased(k);
+       // playerMouse.mouseReleased(k);
     }
 }

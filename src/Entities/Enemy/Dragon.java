@@ -14,7 +14,7 @@ public class Dragon extends EnemyAbstract {
     private int angle = 0;
     Animation animation;
 
-    public Dragon(double positionX, double positionY) {
+    public Dragon(int positionX, int positionY) {
         super(positionX, positionY);
         animation = new Animation(Helper.DRAGON,106,89,100);
         imageWidth = 106;

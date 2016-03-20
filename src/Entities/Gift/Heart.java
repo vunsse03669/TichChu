@@ -9,7 +9,7 @@ import java.io.File;
  * Created by Mr Hung on 3/18/2016.
  */
 public class Heart extends GiftAbstract {
-    public Heart(double positionX, double positionY) {
+    public Heart(int positionX, int positionY) {
         super(positionX, positionY);
         try{
             this.sprite = ImageIO.read(new File(Helper.HEART));

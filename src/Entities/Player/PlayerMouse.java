@@ -22,7 +22,7 @@ public class PlayerMouse extends PlayerAbstract {
     private int speedX;
     Animation animation;
 
-    public PlayerMouse(double positionX, double positionY) {
+    public PlayerMouse(int positionX, int positionY) {
         super(positionX, positionY);
         speedX = 0;
         speedY = 6;

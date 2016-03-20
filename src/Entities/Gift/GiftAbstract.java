@@ -12,7 +12,7 @@ import java.awt.*;
  */
 public class GiftAbstract extends GameObject {
 
-    public GiftAbstract(double positionX, double positionY){
+    public GiftAbstract(int positionX, int positionY){
         this.positionX = positionX;
         this.positionY = positionY;
 
@@ -24,7 +24,7 @@ public class GiftAbstract extends GameObject {
     }
 
     public void move(){
-        this.positionX -= Helper.GIFT_SPEED;
+        this.positionX -= Helper.PLAYER_SPEED;
     }
 
     @Override
@@ -38,10 +38,7 @@ public class GiftAbstract extends GameObject {
                 (int)PlayerManager.getInstance().getPlayerFly().getPositionY(),
                 (int)PlayerManager.getInstance().getPlayerFly().getWidth(),
                 (int)PlayerManager.getInstance().getPlayerFly().getHeight());
-        Rectangle rectPlayer2 = new Rectangle((int) PlayerManager.getInstance().getPlayerMouse().getPositionX(),
-                (int)PlayerManager.getInstance().getPlayerMouse().getPositionY(),
-                (int)PlayerManager.getInstance().getPlayerMouse().getWidth(),
-                (int)PlayerManager.getInstance().getPlayerMouse().getHeight());
-        return rectGift.intersects(rectPlayer) || rectGift.intersects(rectPlayer2);
+
+        return rectGift.intersects(rectPlayer);
     }
 }

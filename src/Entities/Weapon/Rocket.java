@@ -9,7 +9,7 @@ import java.io.File;
  * Created by Mr Hung on 3/19/2016.
  */
 public class Rocket extends BulletAbstract {
-    public Rocket(double positionX, double positionY) {
+    public Rocket(int positionX, int positionY) {
         super(positionX, positionY);
         damage = 100;
         try {

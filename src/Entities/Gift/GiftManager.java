@@ -11,12 +11,12 @@ public class GiftManager {
 
     private GiftManager(){
         vectorGift = new Vector<GiftAbstract>();
-        vectorGift.add(new GiftBullet(1400,450));
-        vectorGift.add(new Heart(1600,450));
-        vectorGift.add(new Ice(1700,450));
+        vectorGift.add(new GiftBullet(500,100));
+        vectorGift.add(new Heart(3000,450));
+        vectorGift.add(new Ice(800,70));
         vectorGift.add(new GiftBullet(10000,700));
-        vectorGift.add(new DauAn(1800,200));
-        vectorGift.add(new Water(1800,500));
+        vectorGift.add(new DauAn(5000,200));
+        vectorGift.add(new Water(1800,800));
     }
 
     public static GiftManager getInstance(){

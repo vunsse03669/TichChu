@@ -22,7 +22,7 @@ public class PlayerFly extends PlayerAbstract {
     private int speedY;
     private int speedX;
     Animation animation;
-    public PlayerFly(double positionX, double positionY) {
+    public PlayerFly(int positionX, int positionY) {
         super(positionX, positionY);
         speedX = 0;
         speedY = 6;
@@ -71,6 +71,13 @@ public class PlayerFly extends PlayerAbstract {
                     this.fireRocket();
                     this.rocket--;
                     sound.get("shot").play();
+                }
+            }
+        }
+        if(k == KeyEvent.VK_E){
+            if(count <= 5){
+                if(this.isWater){
+                    this.shotWater();
                 }
             }
         }
@@ -125,6 +132,6 @@ public class PlayerFly extends PlayerAbstract {
 
     @Override
     public void shotWater() {
-
+        vectorBullet.add(new BulletWater(this.positionX+100,this.positionY+100));
     }
 }

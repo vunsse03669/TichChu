@@ -15,7 +15,7 @@ public class Player extends PlayerAbstract {
     private int direction;
     protected Animation animation;
 
-    public Player(double positionX, double positionY) {
+    public Player(int positionX, int positionY) {
         super(positionX, positionY);
         direction = 0;
         animation = new Animation("Resources/Image/run_right.png",32,32,100);

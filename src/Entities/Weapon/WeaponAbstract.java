@@ -10,7 +10,7 @@ import java.awt.*;
 public abstract class WeaponAbstract extends GameObject {
     protected int damage;
 
-    public WeaponAbstract(double positionX, double positionY){
+    public WeaponAbstract(int positionX, int positionY){
         this.positionX = positionX;
         this.positionY = positionY;
     }

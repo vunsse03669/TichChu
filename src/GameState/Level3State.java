@@ -24,14 +24,14 @@ public class Level3State extends GameState {
     private HashMap<String,AudioPlayer> sound;
     private BufferedImage background;
     private PlayerFly player;
-    private PlayerMouse playerMouse;
+
 
     private BossLevel1 boss;
     private static int count = 0;
     public Level3State(GameStateManager gsm) {
         super(gsm);
         player = PlayerManager.getInstance().getPlayerFly();
-        playerMouse = PlayerManager.getInstance().getPlayerMouse();
+
         try{
             this.background = ImageIO.read(new File(Helper.BACKGROUND_LV2));
 
@@ -46,14 +46,14 @@ public class Level3State extends GameState {
     @Override
     public void update() {
         player.update();
-        playerMouse.update();
+
     }
 
     @Override
     public void draw(Graphics g) {
         g.drawImage(this.background, GameManager.getInstance().getLocationX(),GameManager.getInstance().getLocationY(),null);
         player.draw(g);
-        playerMouse.draw(g);
+
     }
 
     @Override
@@ -73,11 +73,11 @@ public class Level3State extends GameState {
 
     @Override
     public void mouseClicked(int k) {
-        playerMouse.mouseClicked(k);
+
     }
 
     @Override
     public void mouseReleased(int k) {
-        playerMouse.mouseReleased(k);
+
     }
 }

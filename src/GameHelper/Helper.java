@@ -12,7 +12,7 @@ public class Helper {
     public static final int PLAYER_HP = 3;
     public static final int PLAYER_BULLET_SPEED = 3;
     public static final int ENEMY_SPEED = 3;
-    public static final int ENEMY1_SPEED = 3;
+    public static int ENEMY1_SPEED = 3;
     public static final int ENEMY4_SPEED = 6;
     public static final int ENEMY5_SPEED = 3;
     public static final int ENEMY6_SPEED = 5;
@@ -73,6 +73,10 @@ public class Helper {
     public static final String BULLET_RK1 = "Resources/Bullet/bulletRocket1.png";
     public static final String BULLET_RK2 = "Resources/Bullet/bulletRocket2.png";
     public static final String BULLET_RK3 = "Resources/Bullet/bulletRocket3.png";
+    public static final String BULLET_WATER = "Resources/Bullet/Bullet5.png";
+
+    public static boolean isPass = false;
+    public static final String BACKGROUND_LV2 = "Resources/TilesMap/lv2.png";
 
 
 }

@@ -38,7 +38,6 @@ public class GameStateManager {
         states.peek().mouseClicked(k);
     }
     public void mouseReleased(int k) {
-
             states.peek().mouseReleased(k);
     }
 }

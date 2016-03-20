@@ -11,7 +11,7 @@ import java.util.Vector;
 
    private FireBallManager(){
         vectorFire = new Vector<>();
-       vectorFire.add(new FireBall(1000,300));
+       vectorFire.add(new FireBall(4000,900));
    }
 
    public static FireBallManager getInstance(){

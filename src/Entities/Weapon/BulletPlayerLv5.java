@@ -10,7 +10,7 @@ import java.io.File;
  * Created by Mr Hung on 3/17/2016.
  */
 public class BulletPlayerLv5 extends BulletAbstract{
-    public BulletPlayerLv5(double positionX, double positionY) {
+    public BulletPlayerLv5(int positionX, int positionY) {
         super(positionX, positionY);
         damage = 1;
         try{

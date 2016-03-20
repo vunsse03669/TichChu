@@ -9,7 +9,7 @@ import java.io.File;
  * Created by chtnnnmtgkyp on 3/19/2016.
  */
 public class BulletRocket1 extends BulletAbstract {
-    public BulletRocket1(double positionX, double positionY) {
+    public BulletRocket1(int positionX, int positionY) {
         super(positionX, positionY);
         damage = 1;
         try{

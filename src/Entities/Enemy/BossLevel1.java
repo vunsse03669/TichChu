@@ -13,9 +13,10 @@ import java.io.File;
 public class BossLevel1 extends EnemyAbstract {
     private int angle;
     Animation animation;
+    private int speedX = 15;
+    private int speedY = 15;
 
-
-    public BossLevel1(double positionX, double positionY) {
+    public BossLevel1(int positionX, int positionY) {
         super(positionX, positionY);
         this.hp = 100;
         animation = new Animation(Helper.BOSS_LV1,135,148,100);
@@ -27,22 +28,15 @@ public class BossLevel1 extends EnemyAbstract {
 
     @Override
     public void move() {
-        if(this.hp >= 80){
+        if(this.hp >= 50){
             this.positionY += this.speed;
             if(this.positionY >= Helper.HEIGHT || this.positionY <= 0){
                 this.speed =- this.speed;
             }
-        }else if(this.hp >= 50 && this.hp < 80){
-            angle++;
-            this.positionX += (double) (10* Math.sin(angle * 0.09));
-            this.positionY += (double) (10 * Math.cos(angle * 0.09));
-            positionX-=+ Helper.PLAYER_SPEED;
         }
-        else{
-            this.positionY += 15;
-            this.positionY += 15;
 
-        }
+//
+
 
     }
 

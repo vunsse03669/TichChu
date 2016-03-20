@@ -77,7 +77,6 @@ public class MenuState extends GameState {
         }
         if(k == KeyEvent.VK_ENTER){
             if(currentSelection == 0){
-                //gsm.states.pop();
                 gsm.states.push(new Level2State(gsm));
                 sound.get("sound_background").stop();
             }else if(currentSelection == 1){

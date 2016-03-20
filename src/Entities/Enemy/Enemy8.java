@@ -12,7 +12,7 @@ public class Enemy8 extends EnemyAbstract {
     Animation anim;
     int e = 0;
 
-    public Enemy8(double positionX, double positionY) {
+    public Enemy8(int positionX, int positionY) {
         super(positionX, positionY);
         anim = new Animation(Helper.ENEMY8, 109, 123, 100);
         imageWidth = 109;

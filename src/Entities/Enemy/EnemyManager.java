@@ -19,9 +19,9 @@ public class EnemyManager {
             for(int j = 0; j < 3; j++){
                 vectorEnemy.add(new Enemy3(500 +j*100,100 + i*100));
                 vectorEnemy.add(new Enemy2(2000+j*100,100 + i*100));
-                vectorEnemy.add(new Enemy1(5500+j*100,100 + i*100));
-                vectorEnemy.add(new Enemy8(13000+j*100,100 + i*100));
-                vectorEnemy.add(new Enemy9(14000+j*100,100 + i*100));
+               //  vectorEnemy.add(new Enemy1(5500+j*100,100 + i*100));
+
+                vectorEnemy.add(new Enemy9(14000+j*100,400 + i*100));
             }
         }
 
@@ -53,7 +53,12 @@ public class EnemyManager {
         vectorEnemy.add(new Enemy7(11500,250));
         vectorEnemy.add(new Enemy7(10000,750));
         vectorEnemy.add(new Enemy7(10800,750));
-
+        vectorEnemy.add(new Enemy8(13000, 700));
+        vectorEnemy.add(new Enemy8(13500, 400));
+        vectorEnemy.add(new Enemy8(14000, 800));
+        vectorEnemy.add(new Enemy8(15000, 550));
+        vectorEnemy.add(new Enemy8(13000, 800));
+        vectorEnemy.add(new Enemy8(14500, 450));
 
     }
 

@@ -3,6 +3,8 @@ package Entities.Player;
 import Entities.Animation;
 import Entities.Enemy.EnemyAbstract;
 import Entities.Enemy.EnemyManager;
+import Entities.Enemy.FireBall;
+import Entities.Enemy.FireBallManager;
 import Entities.GameObject;
 import Entities.Gift.*;
 import Entities.Observer.Observer;
@@ -34,9 +36,12 @@ public abstract class PlayerAbstract extends GameObject implements Subject{
     protected int rocket;
     protected boolean isWater;
     Vector<Observer> vectorObserver = new Vector<>();
+    private int countDauAn = 0;
+    private boolean isCount = false;
+    private int oldSpeed = 0;
 
 
-    public PlayerAbstract(double positionX, double positionY){
+    public PlayerAbstract(int positionX, int positionY){
         isWater = false;
         coin = 0;
         rocket = 5;
@@ -63,12 +68,11 @@ public abstract class PlayerAbstract extends GameObject implements Subject{
             coin = 0;
         }
         this.move();
-
+        // ban rocket
         for(Rocket2 rocket2 : vectorRocket){
             rocket2.update();
             if(rocket2.getPositionX() == 500){
                 vectorRocket.remove(rocket2);
-                System.out.println("xxx");
                 BulletManager.getInstance().getVectorBulelt().add(new BulletRocket1(Helper.WIDTH/2,Helper.HEIGHT/2));
                 BulletManager.getInstance().getVectorBulelt().add(new BulletRocket2(Helper.WIDTH/2,Helper.HEIGHT/2));
                 BulletManager.getInstance().getVectorBulelt().add(new BulletRocket3(Helper.WIDTH/2,Helper.HEIGHT/2));
@@ -76,20 +80,31 @@ public abstract class PlayerAbstract extends GameObject implements Subject{
                 return;
             }
         }
+        // ban dan vao dich
         for(BulletAbstract bullet : BulletManager.getInstance().getVectorBulelt()){
             bullet.update();
+            //ban dan thuong
             if(bullet.collisionEnemy()){
                 BulletManager.getInstance().getVectorBulelt().remove(bullet);
                 return;
             }
+            // ban dan nuoc
+            if(bullet.collisionWater()){
+                BulletManager.getInstance().getVectorBulelt().remove(bullet);
+                return;
+            }
         }
+        // an qua
         for(GiftAbstract gift : GiftManager.getInstance().getVectorGift()){
             if(gift.collision()){
                 if(gift instanceof Heart){
                     this.hp++;
                     GiftManager.getInstance().getVectorGift().remove(gift);
                 }else if(gift instanceof DauAn){
-                    Helper.PLAYER_SPEED +=2;
+                    oldSpeed = Helper.PLAYER_SPEED;
+                    Helper.PLAYER_SPEED +=5;
+                    Helper.ENEMY1_SPEED += 5;
+                    isCount = true;
                     for(EnemyAbstract enemy : EnemyManager.getInstance().getVectorEnemy()){
                         enemy.setSpeed(Helper.PLAYER_SPEED);
                     }
@@ -127,6 +142,7 @@ public abstract class PlayerAbstract extends GameObject implements Subject{
                 return;
             }
         }
+        // va cham vao enemy
         for(EnemyAbstract enemy : EnemyManager.getInstance().getVectorEnemy()){
             if(enemy.collisionPlayer()){
                 this.hp--;
@@ -138,11 +154,31 @@ public abstract class PlayerAbstract extends GameObject implements Subject{
                 return;
             }
         }
+        for(FireBall fire  : FireBallManager.getInstance().getVectorFire()){
+            if(fire.collisionPlayer()){
+                this.hp = 0;
+                FireBallManager.getInstance().getVectorFire().remove(fire);
+                return;
+
+            }
+        }
+        // set lai van toc sau 10s an dau an
+        if(isCount){
+            countDauAn++;
+            if(countDauAn >= 600){
+                Helper.PLAYER_SPEED = oldSpeed;
+                for(EnemyAbstract enemy : EnemyManager.getInstance().getVectorEnemy()){
+                    enemy.setSpeed(oldSpeed);
+                }
+                countDauAn = 0;
+                isCount =false;
+            }
+        }
     }
 
     @Override
     public void draw(Graphics g) {
-        g.drawImage(this.sprite,(int)this.positionX,(int)this.positionY,null);
+        //g.drawImage(this.sprite,(int)this.positionX,(int)this.positionY,null);
 
     }
 
@@ -161,10 +197,10 @@ public abstract class PlayerAbstract extends GameObject implements Subject{
                 BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv2(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
                 break;
             case 3:
-                //BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv3(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
-                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv5(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
-                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv1(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
-                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv4(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
+                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv3(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
+//                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv5(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
+//                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv1(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
+//                BulletManager.getInstance().getVectorBulelt().add(new BulletPlayerLv4(this.positionX+getWidth()+20,this.positionY +getHeight()/2+20));
 
                 break;
             default:

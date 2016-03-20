@@ -17,10 +17,10 @@ import java.io.File;
 public abstract class EnemyAbstract extends GameObject implements Observer{
     protected Animation anim;
     protected int speed;
-    protected double imageWidth;
-    protected double imageHeight;
+    protected int imageWidth;
+    protected int imageHeight;
     protected int hp;
-    public EnemyAbstract(double positionX, double positionY){
+    public EnemyAbstract(int positionX, int positionY){
         this.positionX = positionX;
         this.positionY = positionY;
         speed = Helper.ENEMY_SPEED;
@@ -33,7 +33,7 @@ public abstract class EnemyAbstract extends GameObject implements Observer{
 
     @Override
     public void draw(Graphics g) {
-        g.drawImage(this.sprite,(int)this.positionX,(int)this.positionY,null);
+        //g.drawImage(this.sprite,(int)this.positionX,(int)this.positionY,null);
     }
 
     public abstract void move();
@@ -46,11 +46,11 @@ public abstract class EnemyAbstract extends GameObject implements Observer{
         this.speed = speed;
     }
 
-    public double getImageWidth() {
+    public int getImageWidth() {
         return imageWidth;
     }
 
-    public double getImageHeight() {
+    public int getImageHeight() {
         return imageHeight;
     }
 
@@ -68,13 +68,10 @@ public abstract class EnemyAbstract extends GameObject implements Observer{
                 (int)PlayerManager.getInstance().getPlayerFly().getPositionY(),
                 (int)PlayerManager.getInstance().getPlayerFly().getWidth(),
                 (int)PlayerManager.getInstance().getPlayerFly().getHeight());
-        Rectangle rectPlayer2 = new Rectangle((int) PlayerManager.getInstance().getPlayerMouse().getPositionX(),
-                (int)PlayerManager.getInstance().getPlayerMouse().getPositionY(),
-                (int)PlayerManager.getInstance().getPlayerMouse().getWidth(),
-                (int)PlayerManager.getInstance().getPlayerMouse().getHeight());
+
         Rectangle rectEnemy = new Rectangle((int)this.positionX,(int)this.positionY,(int)imageWidth,(int)imageHeight);
 
-        return rectEnemy.intersects(rectPlayer) || rectEnemy.intersects(rectPlayer2);
+        return rectEnemy.intersects(rectPlayer);
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.io.File;
  * Created by Mr Hung on 3/19/2016.
  */
 public class Ice extends GiftAbstract {
-    public Ice(double positionX, double positionY) {
+    public Ice(int positionX, int positionY) {
         super(positionX, positionY);
         try{
             this.sprite = ImageIO.read(new File(Helper.ICE));
